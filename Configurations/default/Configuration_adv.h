@@ -1367,7 +1367,6 @@
 #endif
 
 #if HAS_LCD_MENU
-
 //
 // LCD Backlight Timeout
 //
@@ -1390,24 +1389,23 @@
     #endif
   #endif
 
+  #if HAS_MARLINUI_MENU
 
-#if HAS_MARLINUI_MENU
-
-  #if HAS_BED_PROBE
+    #if HAS_BED_PROBE
     // Add calibration in the Probe Offsets menu to compensate for X-axis twist.
     //#define X_AXIS_TWIST_COMPENSATION
-    #if ENABLED(X_AXIS_TWIST_COMPENSATION)
+      #if ENABLED(X_AXIS_TWIST_COMPENSATION)
       /**
        * Enable to init the Probe Z-Offset when starting the Wizard.
        * Use a height slightly above the estimated nozzle-to-probe Z offset.
        * For example, with an offset of -5, consider a starting height of -4.
        */
-      #define XATC_START_Z 0.0
-      #define XATC_MAX_POINTS 3             // Number of points to probe in the wizard
-      #define XATC_Y_POSITION Y_CENTER      // (mm) Y position to probe
-      #define XATC_Z_OFFSETS { 0, 0, 0 }    // Z offsets for X axis sample points
+        #define XATC_START_Z 0.0
+        #define XATC_MAX_POINTS 3             // Number of points to probe in the wizard
+        #define XATC_Y_POSITION Y_CENTER      // (mm) Y position to probe
+        #define XATC_Z_OFFSETS { 0, 0, 0 }    // Z offsets for X axis sample points
+      #endif
     #endif
-  #endif
 
   // Include a page of printer information in the LCD Main Menu
   //#define LCD_INFO_MENU
@@ -1421,21 +1419,22 @@
   // Insert a menu for preheating at the top level to allow for quick access
   //#define PREHEAT_SHORTCUT_MENU_ITEM
 
-#endif // HAS_MARLINUI_MENU
+  #endif // HAS_MARLINUI_MENU
 
-#if ANY(HAS_DISPLAY, DWIN_LCD_PROUI, DWIN_CREALITY_LCD_JYERSUI)
-  //#define SOUND_MENU_ITEM   // Add a mute option to the LCD menu
-  #define SOUND_ON_DEFAULT    // Buzzer/speaker default enabled state
-#endif
+  #if ANY(HAS_DISPLAY, DWIN_LCD_PROUI, DWIN_CREALITY_LCD_JYERSUI)
+    //#define SOUND_MENU_ITEM   // Add a mute option to the LCD menu
+    #define SOUND_ON_DEFAULT    // Buzzer/speaker default enabled state
+  #endif
 
-#if EITHER(HAS_DISPLAY, DWIN_LCD_PROUI)
-  // The timeout to return to the status screen from sub-menus
-  //#define LCD_TIMEOUT_TO_STATUS 15000   // (ms)
+  #if EITHER(HAS_DISPLAY, DWIN_LCD_PROUI)
+    // The timeout to return to the status screen from sub-menus
+    //#define LCD_TIMEOUT_TO_STATUS 15000   // (ms)
 
-  #if ENABLED(SHOW_BOOTSCREEN)
-    #define BOOTSCREEN_TIMEOUT 4000       // (ms) Total Duration to display the boot screen(s)
-    #if EITHER(HAS_MARLINUI_U8GLIB, TFT_COLOR_UI)
-      #define BOOT_MARLIN_LOGO_SMALL      // Show a smaller Marlin logo on the Boot Screen (saving lots of flash)
+    #if ENABLED(SHOW_BOOTSCREEN)
+      #define BOOTSCREEN_TIMEOUT 4000       // (ms) Total Duration to display the boot screen(s)
+      #if EITHER(HAS_MARLINUI_U8GLIB, TFT_COLOR_UI)
+        #define BOOT_MARLIN_LOGO_SMALL      // Show a smaller Marlin logo on the Boot Screen (saving lots of flash)
+      #endif
     #endif
   #endif
 
@@ -1479,6 +1478,7 @@
       //#define NEO2_USER_PRESET_STARTUP       // Have the printer display the user preset color on startup for the second strip
     #endif
   #endif
+
 #endif // HAS_LCD_MENU
 
 #if HAS_DISPLAY

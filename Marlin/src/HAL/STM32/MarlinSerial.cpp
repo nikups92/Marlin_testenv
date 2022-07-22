@@ -38,6 +38,7 @@
   #define USART5 UART5
 #endif
 
+
 #define DECLARE_SERIAL_PORT(ser_num) \
   void _rx_complete_irq_ ## ser_num (serial_t * obj); \
   MSerialT MSerial ## ser_num (true, USART ## ser_num, &_rx_complete_irq_ ## ser_num); \
