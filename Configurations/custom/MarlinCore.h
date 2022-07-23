@@ -74,8 +74,6 @@ bool printJobOngoing();
 bool printingIsPaused();
 void startOrResumeJob();
 
-bool printer_busy();
-
 extern bool wait_for_heatup;
 
 #if HAS_RESUME_CONTINUE
@@ -86,7 +84,7 @@ extern bool wait_for_heatup;
 bool pin_is_protected(const pin_t pin);
 
 #if HAS_SUICIDE
-  inline void suicide() { OUT_WRITE(SUICIDE_PIN, SUICIDE_PIN_STATE); }
+  inline void suicide() { OUT_WRITE(SUICIDE_PIN, SUICIDE_PIN_INVERTING); }
 #endif
 
 #if HAS_KILL
