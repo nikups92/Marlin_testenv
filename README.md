@@ -1,3 +1,5 @@
+AQUILA S2 Marlin Custom Firmware currently based on bugfix-2.1.x Marlin. Test and learning environment.
+
 <p align="center"><img src="buildroot/share/pixmaps/logo/marlin-outrun-nf-500.png" height="250" alt="MarlinFirmware's logo" /></p>
 
 <h1 align="center">Marlin 3D Printer Firmware</h1>
