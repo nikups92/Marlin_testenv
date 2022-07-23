@@ -54,101 +54,101 @@
 // Custom Thermistor 1000 parameters
 //
 #if TEMP_SENSOR_0 == 1000
-  #define HOTEND0_PULLUP_RESISTOR_OHMS    4700 // Pullup resistor
-  #define HOTEND0_RESISTANCE_25C_OHMS   100000 // Resistance at 25C
-  #define HOTEND0_BETA                    3950 // Beta value
-  #define HOTEND0_SH_C_COEFF                 0 // Steinhart-Hart C coefficient
+  #define HOTEND0_PULLUP_RESISTOR_OHMS 4700    // Pullup resistor
+  #define HOTEND0_RESISTANCE_25C_OHMS  100000  // Resistance at 25C
+  #define HOTEND0_BETA                 3950    // Beta value
+  #define HOTEND0_SH_C_COEFF           0       // Steinhart-Hart C coefficient
 #endif
 
 #if TEMP_SENSOR_1 == 1000
-  #define HOTEND1_PULLUP_RESISTOR_OHMS    4700 // Pullup resistor
-  #define HOTEND1_RESISTANCE_25C_OHMS   100000 // Resistance at 25C
-  #define HOTEND1_BETA                    3950 // Beta value
-  #define HOTEND1_SH_C_COEFF                 0 // Steinhart-Hart C coefficient
+  #define HOTEND1_PULLUP_RESISTOR_OHMS 4700    // Pullup resistor
+  #define HOTEND1_RESISTANCE_25C_OHMS  100000  // Resistance at 25C
+  #define HOTEND1_BETA                 3950    // Beta value
+  #define HOTEND1_SH_C_COEFF           0       // Steinhart-Hart C coefficient
 #endif
 
 #if TEMP_SENSOR_2 == 1000
-  #define HOTEND2_PULLUP_RESISTOR_OHMS    4700 // Pullup resistor
-  #define HOTEND2_RESISTANCE_25C_OHMS   100000 // Resistance at 25C
-  #define HOTEND2_BETA                    3950 // Beta value
-  #define HOTEND2_SH_C_COEFF                 0 // Steinhart-Hart C coefficient
+  #define HOTEND2_PULLUP_RESISTOR_OHMS 4700    // Pullup resistor
+  #define HOTEND2_RESISTANCE_25C_OHMS  100000  // Resistance at 25C
+  #define HOTEND2_BETA                 3950    // Beta value
+  #define HOTEND2_SH_C_COEFF           0       // Steinhart-Hart C coefficient
 #endif
 
 #if TEMP_SENSOR_3 == 1000
-  #define HOTEND3_PULLUP_RESISTOR_OHMS    4700 // Pullup resistor
-  #define HOTEND3_RESISTANCE_25C_OHMS   100000 // Resistance at 25C
-  #define HOTEND3_BETA                    3950 // Beta value
-  #define HOTEND3_SH_C_COEFF                 0 // Steinhart-Hart C coefficient
+  #define HOTEND3_PULLUP_RESISTOR_OHMS 4700    // Pullup resistor
+  #define HOTEND3_RESISTANCE_25C_OHMS  100000  // Resistance at 25C
+  #define HOTEND3_BETA                 3950    // Beta value
+  #define HOTEND3_SH_C_COEFF           0       // Steinhart-Hart C coefficient
 #endif
 
 #if TEMP_SENSOR_4 == 1000
-  #define HOTEND4_PULLUP_RESISTOR_OHMS    4700 // Pullup resistor
-  #define HOTEND4_RESISTANCE_25C_OHMS   100000 // Resistance at 25C
-  #define HOTEND4_BETA                    3950 // Beta value
-  #define HOTEND4_SH_C_COEFF                 0 // Steinhart-Hart C coefficient
+  #define HOTEND4_PULLUP_RESISTOR_OHMS 4700    // Pullup resistor
+  #define HOTEND4_RESISTANCE_25C_OHMS  100000  // Resistance at 25C
+  #define HOTEND4_BETA                 3950    // Beta value
+  #define HOTEND4_SH_C_COEFF           0       // Steinhart-Hart C coefficient
 #endif
 
 #if TEMP_SENSOR_5 == 1000
-  #define HOTEND5_PULLUP_RESISTOR_OHMS    4700 // Pullup resistor
-  #define HOTEND5_RESISTANCE_25C_OHMS   100000 // Resistance at 25C
-  #define HOTEND5_BETA                    3950 // Beta value
-  #define HOTEND5_SH_C_COEFF                 0 // Steinhart-Hart C coefficient
+  #define HOTEND5_PULLUP_RESISTOR_OHMS 4700    // Pullup resistor
+  #define HOTEND5_RESISTANCE_25C_OHMS  100000  // Resistance at 25C
+  #define HOTEND5_BETA                 3950    // Beta value
+  #define HOTEND5_SH_C_COEFF           0       // Steinhart-Hart C coefficient
 #endif
 
 #if TEMP_SENSOR_6 == 1000
-  #define HOTEND6_PULLUP_RESISTOR_OHMS    4700 // Pullup resistor
-  #define HOTEND6_RESISTANCE_25C_OHMS   100000 // Resistance at 25C
-  #define HOTEND6_BETA                    3950 // Beta value
-  #define HOTEND6_SH_C_COEFF                 0 // Steinhart-Hart C coefficient
+  #define HOTEND6_PULLUP_RESISTOR_OHMS 4700    // Pullup resistor
+  #define HOTEND6_RESISTANCE_25C_OHMS  100000  // Resistance at 25C
+  #define HOTEND6_BETA                 3950    // Beta value
+  #define HOTEND6_SH_C_COEFF           0       // Steinhart-Hart C coefficient
 #endif
 
 #if TEMP_SENSOR_7 == 1000
-  #define HOTEND7_PULLUP_RESISTOR_OHMS    4700 // Pullup resistor
-  #define HOTEND7_RESISTANCE_25C_OHMS   100000 // Resistance at 25C
-  #define HOTEND7_BETA                    3950 // Beta value
-  #define HOTEND7_SH_C_COEFF                 0 // Steinhart-Hart C coefficient
+  #define HOTEND7_PULLUP_RESISTOR_OHMS 4700    // Pullup resistor
+  #define HOTEND7_RESISTANCE_25C_OHMS  100000  // Resistance at 25C
+  #define HOTEND7_BETA                 3950    // Beta value
+  #define HOTEND7_SH_C_COEFF           0       // Steinhart-Hart C coefficient
 #endif
 
 #if TEMP_SENSOR_BED == 1000
-  #define BED_PULLUP_RESISTOR_OHMS        4700 // Pullup resistor
-  #define BED_RESISTANCE_25C_OHMS       100000 // Resistance at 25C
-  #define BED_BETA                        3950 // Beta value
-  #define BED_SH_C_COEFF                     0 // Steinhart-Hart C coefficient
+  #define BED_PULLUP_RESISTOR_OHMS     4700    // Pullup resistor
+  #define BED_RESISTANCE_25C_OHMS      100000  // Resistance at 25C
+  #define BED_BETA                     3950    // Beta value
+  #define BED_SH_C_COEFF               0       // Steinhart-Hart C coefficient
 #endif
 
 #if TEMP_SENSOR_CHAMBER == 1000
-  #define CHAMBER_PULLUP_RESISTOR_OHMS    4700 // Pullup resistor
-  #define CHAMBER_RESISTANCE_25C_OHMS   100000 // Resistance at 25C
-  #define CHAMBER_BETA                    3950 // Beta value
-  #define CHAMBER_SH_C_COEFF                 0 // Steinhart-Hart C coefficient
+  #define CHAMBER_PULLUP_RESISTOR_OHMS 4700    // Pullup resistor
+  #define CHAMBER_RESISTANCE_25C_OHMS  100000  // Resistance at 25C
+  #define CHAMBER_BETA                 3950    // Beta value
+  #define CHAMBER_SH_C_COEFF           0       // Steinhart-Hart C coefficient
 #endif
 
 #if TEMP_SENSOR_COOLER == 1000
-  #define COOLER_PULLUP_RESISTOR_OHMS     4700 // Pullup resistor
-  #define COOLER_RESISTANCE_25C_OHMS    100000 // Resistance at 25C
-  #define COOLER_BETA                     3950 // Beta value
-  #define COOLER_SH_C_COEFF                  0 // Steinhart-Hart C coefficient
+  #define COOLER_PULLUP_RESISTOR_OHMS 4700    // Pullup resistor
+  #define COOLER_RESISTANCE_25C_OHMS  100000  // Resistance at 25C
+  #define COOLER_BETA                 3950    // Beta value
+  #define COOLER_SH_C_COEFF           0       // Steinhart-Hart C coefficient
 #endif
 
 #if TEMP_SENSOR_PROBE == 1000
-  #define PROBE_PULLUP_RESISTOR_OHMS      4700 // Pullup resistor
-  #define PROBE_RESISTANCE_25C_OHMS     100000 // Resistance at 25C
-  #define PROBE_BETA                      3950 // Beta value
-  #define PROBE_SH_C_COEFF                   0 // Steinhart-Hart C coefficient
+  #define PROBE_PULLUP_RESISTOR_OHMS   4700    // Pullup resistor
+  #define PROBE_RESISTANCE_25C_OHMS    100000  // Resistance at 25C
+  #define PROBE_BETA                   3950    // Beta value
+  #define PROBE_SH_C_COEFF            0       // Steinhart-Hart C coefficient
 #endif
 
 #if TEMP_SENSOR_BOARD == 1000
-  #define BOARD_PULLUP_RESISTOR_OHMS      4700 // Pullup resistor
-  #define BOARD_RESISTANCE_25C_OHMS     100000 // Resistance at 25C
-  #define BOARD_BETA                      3950 // Beta value
-  #define BOARD_SH_C_COEFF                   0 // Steinhart-Hart C coefficient
+  #define BOARD_PULLUP_RESISTOR_OHMS   4700    // Pullup resistor
+  #define BOARD_RESISTANCE_25C_OHMS    100000  // Resistance at 25C
+  #define BOARD_BETA                   3950    // Beta value
+  #define BOARD_SH_C_COEFF             0       // Steinhart-Hart C coefficient
 #endif
 
 #if TEMP_SENSOR_REDUNDANT == 1000
-  #define REDUNDANT_PULLUP_RESISTOR_OHMS  4700 // Pullup resistor
-  #define REDUNDANT_RESISTANCE_25C_OHMS 100000 // Resistance at 25C
-  #define REDUNDANT_BETA                  3950 // Beta value
-  #define REDUNDANT_SH_C_COEFF               0 // Steinhart-Hart C coefficient
+  #define REDUNDANT_PULLUP_RESISTOR_OHMS   4700    // Pullup resistor
+  #define REDUNDANT_RESISTANCE_25C_OHMS    100000  // Resistance at 25C
+  #define REDUNDANT_BETA                   3950    // Beta value
+  #define REDUNDANT_SH_C_COEFF             0       // Steinhart-Hart C coefficient
 #endif
 
 /**
@@ -314,7 +314,7 @@
    * and/or decrease WATCH_TEMP_INCREASE. WATCH_TEMP_INCREASE should not be set
    * below 2.
    */
-  #define WATCH_TEMP_PERIOD  30               // Seconds
+  #define WATCH_TEMP_PERIOD 30                // Seconds
   #define WATCH_TEMP_INCREASE 3               // Degrees Celsius
 #endif
 
@@ -328,7 +328,7 @@
   /**
    * As described above, except for the bed (M140/M190/M303).
    */
-  #define WATCH_BED_TEMP_PERIOD                120 // Seconds
+  #define WATCH_BED_TEMP_PERIOD               120 // Seconds
   #define WATCH_BED_TEMP_INCREASE               2 // Degrees Celsius
 #endif
 
@@ -350,14 +350,14 @@
  * Thermal Protection parameters for the laser cooler.
  */
 #if ENABLED(THERMAL_PROTECTION_COOLER)
-  #define THERMAL_PROTECTION_COOLER_PERIOD     10 // Seconds
-  #define THERMAL_PROTECTION_COOLER_HYSTERESIS  3 // Degrees Celsius
+  #define THERMAL_PROTECTION_COOLER_PERIOD    10 // Seconds
+  #define THERMAL_PROTECTION_COOLER_HYSTERESIS 3 // Degrees Celsius
 
   /**
    * Laser cooling watch settings (M143/M193).
    */
   #define WATCH_COOLER_TEMP_PERIOD            60 // Seconds
-  #define WATCH_COOLER_TEMP_INCREASE          3 // Degrees Celsius
+  #define WATCH_COOLER_TEMP_INCREASE           3 // Degrees Celsius
 #endif
 
 #if ANY(THERMAL_PROTECTION_HOTENDS, THERMAL_PROTECTION_BED, THERMAL_PROTECTION_CHAMBER, THERMAL_PROTECTION_COOLER)
@@ -764,7 +764,7 @@
 
 /**
 // For Z set the number of stepper drivers
-//
+// Commented because no more necessary.
 //#define NUM_Z_STEPPER_DRIVERS 1   // (1-4) Z options change based on how many
 
 #if NUM_Z_STEPPER_DRIVERS > 1
@@ -794,7 +794,6 @@
 #if ENABLED(E_DUAL_STEPPER_DRIVERS)
   //#define INVERT_E1_VS_E0_DIR   // Enable if the E motors need opposite DIR states
 #endif
-
 
 /**
  * Dual X Carriage
@@ -826,15 +825,15 @@
  */
 //#define DUAL_X_CARRIAGE
 #if ENABLED(DUAL_X_CARRIAGE)
-  #define X1_MIN_POS X_MIN_POS    // Set to X_MIN_POS
-  #define X1_MAX_POS X_BED_SIZE   // A max coordinate so the X1 carriage can't hit the parked X2 carriage
-  #define X2_MIN_POS    80        // A min coordinate so the X2 carriage can't hit the parked X1 carriage
-  #define X2_MAX_POS   353        // The max position of the X2 carriage, typically also the home position
-  #define X2_HOME_DIR    1        // Set to 1. The X2 carriage always homes to the max endstop position
-  #define X2_HOME_POS X2_MAX_POS  // Default X2 home position. Set to X2_MAX_POS.
-                                  // NOTE: For Dual X Carriage use M218 T1 Xn to override the X2_HOME_POS.
-                                  // This allows recalibration of endstops distance without a rebuild.
-                                  // Remember to set the second extruder's X-offset to 0 in your slicer.
+  #define X1_MIN_POS X_MIN_POS   // Set to X_MIN_POS
+  #define X1_MAX_POS X_BED_SIZE  // A max coordinate so the X1 carriage can't hit the parked X2 carriage
+  #define X2_MIN_POS    80       // A min coordinate so the X2 carriage can't hit the parked X1 carriage
+  #define X2_MAX_POS   353       // The max position of the X2 carriage, typically also the home position
+  #define X2_HOME_DIR    1       // Set to 1. The X2 carriage always homes to the max endstop position
+  #define X2_HOME_POS X2_MAX_POS // Default X2 home position. Set to X2_MAX_POS.
+                          // NOTE: For Dual X Carriage use M218 T1 Xn to override the X2_HOME_POS.
+                          // This allows recalibration of endstops distance without a rebuild.
+                          // Remember to set the second extruder's X-offset to 0 in your slicer.
 
   // This is the default power-up mode which can be changed later using M605 S<mode>.
   #define DEFAULT_DUAL_X_CARRIAGE_MODE DXC_AUTO_PARK_MODE
@@ -936,7 +935,7 @@
 
 //#define HOMING_BACKOFF_POST_MM { 2, 2, 2 }  // (linear=mm, rotational=°) Backoff from endstops after homing
 
-//#define QUICK_HOME                          // If G28 contains XY do a diagonal move first
+#define QUICK_HOME                            // If G28 contains XY do a diagonal move first
 //#define HOME_Y_BEFORE_X                     // If G28 contains XY home Y before X
 //#define HOME_Z_FIRST                        // Home Z first. Requires a Z-MIN endstop (not a probe).
 //#define CODEPENDENT_XY_HOMING               // If X/Y can't home without homing Y/X first
@@ -1005,7 +1004,7 @@
    *
    * Set the default state here, change with 'M401 S' or UI, use M500 to save, M502 to reset.
    */
-  //#define BLTOUCH_HS_MODE true
+  #define BLTOUCH_HS_MODE true
 
   // Safety: Enable voltage mode settings in the LCD menu.
   //#define BLTOUCH_LCD_VOLTAGE_MENU
@@ -1286,7 +1285,7 @@
  * vibration and surface artifacts. The algorithm adapts to provide the best possible step smoothing at the
  * lowest stepping frequencies.
  */
-//#define ADAPTIVE_STEP_SMOOTHING
+#define ADAPTIVE_STEP_SMOOTHING
 
 /**
  * Custom Microstepping
@@ -1380,10 +1379,10 @@
 // Change values more rapidly when the encoder is rotated faster
 #define ENCODER_RATE_MULTIPLIER
 #if ENABLED(ENCODER_RATE_MULTIPLIER)
-  #define ENCODER_10X_STEPS_PER_SEC   30  // (steps/s) Encoder rate for 10x speed
-  #define ENCODER_100X_STEPS_PER_SEC  130 // (steps/s) Encoder rate for 100x speed
+ #define ENCODER_5X_STEPS_PER_SEC    30
+ #define ENCODER_10X_STEPS_PER_SEC   80  // (steps/s) Encoder rate for 10x speed
+ #define ENCODER_100X_STEPS_PER_SEC 130  // (steps/s) Encoder rate for 100x speed
 #endif
-
 // Play a beep when the feedrate is changed from the Status Screen
 //#define BEEP_ON_FEEDRATE_CHANGE
 #if ENABLED(BEEP_ON_FEEDRATE_CHANGE)
@@ -1538,9 +1537,9 @@
 // LCD Print Progress options
 #if EITHER(SDSUPPORT, LCD_SET_PROGRESS_MANUALLY)
   #if CAN_SHOW_REMAINING_TIME
-    //#define SHOW_REMAINING_TIME         // Display estimated time to completion
+    #define SHOW_REMAINING_TIME         // Display estimated time to completion
     #if ENABLED(SHOW_REMAINING_TIME)
-      //#define USE_M73_REMAINING_TIME    // Use remaining time from M73 command instead of estimation
+      #define USE_M73_REMAINING_TIME    // Use remaining time from M73 command instead of estimation
       //#define ROTATE_PROGRESS_DISPLAY   // Display (P)rogress, (E)lapsed, and (R)emaining time
     #endif
   #endif
@@ -1614,7 +1613,7 @@
    * an option on the LCD screen to continue the print from the last-known
    * point in the file.
    */
-  //#define POWER_LOSS_RECOVERY
+  #define POWER_LOSS_RECOVERY
   #if ENABLED(POWER_LOSS_RECOVERY)
     #define PLR_ENABLED_DEFAULT   false // Power Loss Recovery enabled by default. (Set with 'M413 Sn' & M500)
     //#define BACKUP_POWER_SUPPLY       // Backup power / UPS to move the steppers on power loss
@@ -1660,7 +1659,7 @@
    *  - SDSORT_CACHE_NAMES will retain the sorted file listing in RAM. (Expensive!)
    *  - SDSORT_DYNAMIC_RAM only uses RAM when the SD menu is visible. (Use with caution!)
    */
-  //#define SDCARD_SORT_ALPHA
+  #define SDCARD_SORT_ALPHA
 
   // SD Card Sorting options
   #if ENABLED(SDCARD_SORT_ALPHA)
@@ -2167,7 +2166,7 @@
 #define LIN_ADVANCE
 #if ENABLED(LIN_ADVANCE)
   //#define EXTRA_LIN_ADVANCE_K // Enable for second linear advance constants
-  #define LIN_ADVANCE_K 0    // Unit: mm compression per 1mm/s extruder speed
+  #define LIN_ADVANCE_K 0       // Unit: mm compression per 1mm/s extruder speed
   //#define LA_DEBUG            // If enabled, this will generate debug information output over USB.
   //#define EXPERIMENTAL_SCURVE // Enable this option to permit S-Curve Acceleration
   //#define ALLOW_LOW_EJERK     // Allow a DEFAULT_EJERK value of <10. Recommended for direct drive hotends.
@@ -2335,11 +2334,11 @@
 //
 // G2/G3 Arc Support
 //
-#define ARC_SUPPORT                   // Requires ~3226 bytes
+#define ARC_SUPPORT                 // Requires ~3226 bytes
 #if ENABLED(ARC_SUPPORT)
-  #define MIN_ARC_SEGMENT_MM      0.1 // (mm) Minimum length of each arc segment
-  #define MAX_ARC_SEGMENT_MM      1.0 // (mm) Maximum length of each arc segment
-  #define MIN_CIRCLE_SEGMENTS    72   // Minimum number of segments in a complete circle
+  #define MIN_ARC_SEGMENT_MM      1 // (mm) Minimum length of each arc segment
+  #define MAX_ARC_SEGMENT_MM      1 // (mm) Maximum length of each arc segment
+  #define MIN_CIRCLE_SEGMENTS    24   // Minimum number of segments in a complete circle
   //#define ARC_SEGMENTS_PER_SEC 50   // Use the feedrate to choose the segment length
   #define N_ARC_CORRECTION       25   // Number of interpolated segments between corrections
   //#define ARC_P_CIRCLES             // Enable the 'P' parameter to specify complete circles
@@ -2685,7 +2684,7 @@
  *
  * Enable PARK_HEAD_ON_PAUSE to add the G-code M125 Pause and Park.
  */
-//#define ADVANCED_PAUSE_FEATURE
+#define ADVANCED_PAUSE_FEATURE
 #if ENABLED(ADVANCED_PAUSE_FEATURE)
   #define PAUSE_PARK_RETRACT_FEEDRATE         60  // (mm/s) Initial retract feedrate.
   #define PAUSE_PARK_RETRACT_LENGTH            2  // (mm) Initial retract.
@@ -2699,9 +2698,9 @@
   #define FILAMENT_CHANGE_SLOW_LOAD_FEEDRATE   6  // (mm/s) Slow move when starting load.
   #define FILAMENT_CHANGE_SLOW_LOAD_LENGTH     0  // (mm) Slow length, to allow time to insert material.
                                                   // 0 to disable start loading and skip to fast load only
-  #define FILAMENT_CHANGE_FAST_LOAD_FEEDRATE   10  // (mm/s) Load filament feedrate. This can be pretty fast.
+  #define FILAMENT_CHANGE_FAST_LOAD_FEEDRATE  10  // (mm/s) Load filament feedrate. This can be pretty fast.
   #define FILAMENT_CHANGE_FAST_LOAD_ACCEL     25  // (mm/s^2) Lower acceleration may allow a faster feedrate.
-  #define FILAMENT_CHANGE_FAST_LOAD_LENGTH     310  // (mm) Load length of filament, from extruder gear to nozzle.
+  #define FILAMENT_CHANGE_FAST_LOAD_LENGTH   310  // (mm) Load length of filament, from extruder gear to nozzle.
                                                   //   For Bowden, the full length of the tube and nozzle.
                                                   //   For direct drive, the full length of the nozzle.
   //#define ADVANCED_PAUSE_CONTINUOUS_PURGE       // Purge continuously up to the purge length until interrupted.
@@ -3206,7 +3205,7 @@
   #define STEALTHCHOP_I
   #define STEALTHCHOP_J
   #define STEALTHCHOP_K
-  #define STEALTHCHOP_E
+  //#define STEALTHCHOP_E
 
   /**
    * Optimize spreadCycle chopper parameters by using predefined parameter sets
@@ -3232,13 +3231,13 @@
   //#define CHOPPER_TIMING_Z2 CHOPPER_TIMING_Z
   //#define CHOPPER_TIMING_Z3 CHOPPER_TIMING_Z
   //#define CHOPPER_TIMING_Z4 CHOPPER_TIMING_Z
+  #define CHOPPER_TIMING_E  CHOPPER_DEFAULT_24      // For Extruders (override below)
   //#define CHOPPER_TIMING_I  CHOPPER_TIMING        // For I Axis
   //#define CHOPPER_TIMING_J  CHOPPER_TIMING        // For J Axis
   //#define CHOPPER_TIMING_K  CHOPPER_TIMING        // For K Axis
   //#define CHOPPER_TIMING_U  CHOPPER_TIMING        // For U Axis
   //#define CHOPPER_TIMING_V  CHOPPER_TIMING        // For V Axis
   //#define CHOPPER_TIMING_W  CHOPPER_TIMING        // For W Axis
-  //#define CHOPPER_TIMING_E  CHOPPER_TIMING        // For Extruders (override below)
   //#define CHOPPER_TIMING_E1 CHOPPER_TIMING_E
   //#define CHOPPER_TIMING_E2 CHOPPER_TIMING_E
   //#define CHOPPER_TIMING_E3 CHOPPER_TIMING_E
@@ -3358,7 +3357,7 @@
    * Beta feature!
    * Create a 50/50 square wave step pulse optimal for stepper drivers.
    */
-  //#define SQUARE_WAVE_STEPPING
+  #define SQUARE_WAVE_STEPPING
 
   /**
    * Enable M122 debugging command for TMC stepper drivers.
@@ -3732,7 +3731,6 @@
 //#define LASER_FEATURE
 #if EITHER(SPINDLE_FEATURE, LASER_FEATURE)
   #define SPINDLE_LASER_ACTIVE_STATE    LOW    // Set to "HIGH" if SPINDLE_LASER_ENA_PIN is active HIGH
-
   #define SPINDLE_LASER_USE_PWM                // Enable if your controller supports setting the speed/power
   #if ENABLED(SPINDLE_LASER_USE_PWM)
     #define SPINDLE_LASER_PWM_INVERT    false  // Set to "true" if the speed/power goes up when you want it to go slower
@@ -4079,7 +4077,7 @@
 #endif
 
 // Support for MeatPack G-code compression (https://github.com/scottmudge/OctoPrint-MeatPack)
-//#define MEATPACK_ON_SERIAL_PORT_1
+#define MEATPACK_ON_SERIAL_PORT_1
 //#define MEATPACK_ON_SERIAL_PORT_2
 
 //#define GCODE_CASE_INSENSITIVE  // Accept G-code sent to the firmware in lowercase
