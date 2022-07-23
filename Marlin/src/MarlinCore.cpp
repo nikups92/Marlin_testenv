@@ -416,7 +416,7 @@ void startOrResumeJob() {
   }
 
   inline void finishSDPrinting() {
-     if (queue.enqueue_one_P(PSTR("M1001"))) { // Keep trying until it gets queued
+     if (queue.enqueue_one(PSTR("M1001"))) { // Keep trying until it gets queued
       marlin_state = MF_RUNNING;              // Signal to stop trying
       TERN_(PASSWORD_AFTER_SD_PRINT_END, password.lock_machine());
       TERN_(DGUS_LCD_UI_MKS, ScreenHandler.SDPrintingFinished());
@@ -481,7 +481,7 @@ inline void manage_inactivity(const bool no_stepper_sleep=false) {
           //TERN_(DISABLE_INACTIVE_W, stepper.disable_axis(W_AXIS));
           TERN_(DISABLE_INACTIVE_E, stepper.disable_e_steppers());
 
-          TERN_(AUTO_BED_LEVELING_UBL, ubl.steppers_were_disabled());
+          TERN_(AUTO_BED_LEVELING_UBL, bedlevel.steppers_were_disabled());
         }
       }
       else
@@ -530,7 +530,7 @@ inline void manage_inactivity(const bool no_stepper_sleep=false) {
     if (!IS_SD_PRINTING() && !READ(HOME_PIN)) { // HOME_PIN goes LOW when pressed
       if (ELAPSED(ms, next_home_key_ms)) {
         next_home_key_ms = ms + HOME_DEBOUNCE_DELAY;
-        LCD_MESSAGEPGM(MSG_AUTO_HOME);
+        LCD_MESSAGE(MSG_AUTO_HOME);
         queue.inject_P(G28_STR);
       }
     }
@@ -555,7 +555,7 @@ inline void manage_inactivity(const bool no_stepper_sleep=false) {
     }while(0)
 
     #define CHECK_CUSTOM_USER_BUTTON(N)     _CHECK_CUSTOM_USER_BUTTON(N, NOOP)
-    #define CHECK_BETTER_USER_BUTTON(N) _CHECK_CUSTOM_USER_BUTTON(N, if (strlen(BUTTON##N##_DESC)) LCD_MESSAGEPGM_P(PSTR(BUTTON##N##_DESC)))
+    #define CHECK_BETTER_USER_BUTTON(N) _CHECK_CUSTOM_USER_BUTTON(N, if (strlen(BUTTON##N##_DESC)) LCD_MESSAGE(BUTTON##N##_DESC)))
 
     #if HAS_BETTER_USER_BUTTON(1)
       CHECK_BETTER_USER_BUTTON(1);
@@ -998,7 +998,7 @@ void stop() {
 
   if (!IsStopped()) {
     SERIAL_ERROR_MSG(STR_ERR_STOPPED);
-    LCD_MESSAGEPGM(MSG_STOPPED);
+    LCD_MESSAGE(MSG_STOPPED);
     safe_delay(350);       // allow enough time for messages to get out before stopping
     marlin_state = MF_STOPPED;
   }
@@ -1298,13 +1298,11 @@ void setup() {
   SETUP_RUN(esp_wifi_init());
 
   // Report Reset Reason
-  const byte mcu = HAL_get_reset_source();
   if (mcu & RST_POWER_ON) SERIAL_ECHOLNPGM(STR_POWERUP);
   if (mcu & RST_EXTERNAL) SERIAL_ECHOLNPGM(STR_EXTERNAL_RESET);
   if (mcu & RST_BROWN_OUT) SERIAL_ECHOLNPGM(STR_BROWNOUT_RESET);
   if (mcu & RST_WATCHDOG) SERIAL_ECHOLNPGM(STR_WATCHDOG_RESET);
   if (mcu & RST_SOFTWARE) SERIAL_ECHOLNPGM(STR_SOFTWARE_RESET);
-  HAL_clear_reset_source();
 
   // Identify myself as Marlin x.x.x
   SERIAL_ECHOLNPGM("Marlin " SHORT_BUILD_VERSION);
@@ -1619,10 +1617,6 @@ void setup() {
     BL24CXX::init();
     const uint8_t err = BL24CXX::check();
     SERIAL_ECHO_TERNARY(err, "BL24CXX Check ", "failed", "succeeded", "!\n");
-  #endif
-
-  #if HAS_DWIN_E3V2_BASIC
-    SETUP_RUN(DWIN_InitScreen());
   #endif
 
   #if HAS_SERVICE_INTERVALS && !HAS_DWIN_E3V2_BASIC

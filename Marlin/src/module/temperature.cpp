@@ -49,16 +49,6 @@
   #include "motion.h"
 #endif
 
-#if ENABLED(DWIN_CREALITY_LCD)
-  #include "../lcd/e3v2/creality/dwin.h"
-#elif ENABLED(DWIN_LCD_PROUI)
-  #include "../lcd/e3v2/proui/dwin.h"
-#endif
-
-#if ENABLED(EXTENSIBLE_UI)
-  #include "../lcd/extui/ui_api.h"
-#endif
-
 #if ENABLED(HOST_PROMPT_SUPPORT)
   #include "../feature/host_actions.h"
 #endif

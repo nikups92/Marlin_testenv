@@ -148,7 +148,7 @@ class PrintJobRecovery {
     #if HAS_DWIN_E3V2_BASIC
       static bool dwin_flag;
     #endif
-
+    
     static void init();
     static void prepare();
 

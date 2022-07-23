@@ -29,13 +29,6 @@
 #include "../../../module/motion.h"
 
 #include "../../../lcd/marlinui.h"
-#if ENABLED(EXTENSIBLE_UI)
-  #include "../../../lcd/extui/ui_api.h"
-#elif ENABLED(DWIN_CREALITY_LCD)
-  #include "../../../lcd/e3v2/creality/dwin.h"
-#elif ENABLED(DWIN_LCD_PROUI)
-  #include "../../../lcd/e3v2/proui/dwin.h"
-#endif
 
 #define DEBUG_OUT ENABLED(DEBUG_POWER_LOSS_RECOVERY)
 #include "../../../core/debug_out.h"
@@ -68,7 +61,7 @@ void GcodeSuite::M1000() {
       #if HAS_MARLINUI_MENU
         ui.goto_screen(menu_job_recovery);
       #elif HAS_DWIN_E3V2_BASIC
-        recovery.dwin_flag = true;
+        recovery.dwin_flag = true; 
       #elif ENABLED(EXTENSIBLE_UI)
         ExtUI::onPowerLossResume();
       #else

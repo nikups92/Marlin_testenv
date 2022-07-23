@@ -476,7 +476,8 @@
 
 // Aliases for LCD features
 #if EITHER(DWIN_CREALITY_LCD, DWIN_LCD_PROUI)
-  #define HAS_DWIN_E3V2_BASIC 1
+  //Commenting DWIN E3V2. I use library in lcd/dwin
+  //#define HAS_DWIN_E3V2_BASIC 1
   #define HAS_DWIN_E3V2 1
 #endif
 #if ENABLED(DWIN_LCD_PROUI)
