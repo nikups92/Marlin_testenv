@@ -4120,7 +4120,7 @@ void CrealityDWINClass::Menu_Item_Handler(uint8_t menu, uint8_t item, bool draw/
             Draw_Float(ui.brightness, row, false, 1);
           }
           else {
-            Modify_Value(ui.brightness, MIN_LCD_BRIGHTNESS, MAX_LCD_BRIGHTNESS, 1, ui.refresh_brightness);
+            Modify_Value(ui.brightness, LCD_BRIGHTNESS_MIN, LCD_BRIGHTNESS_MAX, 1, ui.refresh_brightness);
           }
           break;
       }
