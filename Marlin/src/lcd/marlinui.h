@@ -312,7 +312,6 @@ public:
       static void set_progress(const progress_t p) { progress_override = _MIN(p, 100U * (PROGRESS_SCALE)); }
       static void set_progress_done() { progress_override = (PROGRESS_MASK + 1U) + 100U * (PROGRESS_SCALE); }
       static void progress_reset() { if (progress_override & (PROGRESS_MASK + 1U)) set_progress(0); }
-    #endif
     #if ENABLED(SHOW_REMAINING_TIME)
       static inline uint32_t _calculated_remaining_time() {
         const duration_t elapsed = print_job_timer.duration();
@@ -327,6 +326,7 @@ public:
       #else
         FORCE_INLINE static uint32_t get_remaining_time() { return _calculated_remaining_time(); }
       #endif
+     #endif
     #endif
     static progress_t _get_progress();
     #if HAS_PRINT_PROGRESS_PERMYRIAD
@@ -444,8 +444,6 @@ public:
           FORCE_INLINE static void reset_progress_bar_timeout() { expire_status_ms = 0; }
         #endif
       #endif
-     #endif
-
       static uint8_t lcd_status_update_delay;
 
       #if HAS_LCD_CONTRAST
@@ -468,8 +466,7 @@ public:
       #else
         static void completion_feedback(const bool=true) { TERN_(HAS_TOUCH_SLEEP, wakeup_screen()); }
       #endif
-      #if DISABLED(LIGHTWEIGHT_UI)
-        static void draw_status_message(const bool blink);
+
       #if ENABLED(ADVANCED_PAUSE_FEATURE)
         static void draw_hotend_status(const uint8_t row, const uint8_t extruder);
       #endif
@@ -499,15 +496,12 @@ public:
       static void zoffset_overlay(const_float_t zvalue);
     #endif
 
-    static void draw_kill_screen();
-    sstatic void kill_screen(PGM_P const lcd_error, PGM_P const lcd_component);
     #if DISABLED(LIGHTWEIGHT_UI)
       static void draw_status_message(const bool blink);
     #endif
 
-    static bool get_blink();
-    static void kill_screen(PGM_P const lcd_error, PGM_P const lcd_component);
     static void draw_kill_screen();
+    static void kill_screen(PGM_P const lcd_error, PGM_P const lcd_component);
 
   #else // No LCD
     static inline void init() {}
