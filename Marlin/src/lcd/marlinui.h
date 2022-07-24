@@ -191,23 +191,7 @@ public:
   MarlinUI() {
     TERN_(HAS_MARLINUI_MENU, currentScreen = status_screen);
   }
-/*
-  static void init();
 
-  #if HAS_DISPLAY || HAS_DWIN_E3V2
-    static void init_lcd();
-  #else
-    static void init_lcd() {}
-  #endif
-
-  static void reinit_lcd() { TERN_(REINIT_NOISY_LCD, init_lcd()); }
-
-  #if HAS_WIRED_LCD
-    static bool detected();
-  #else
-    static bool detected() { return true; }
-  #endif
-*/
   #if HAS_MULTI_LANGUAGE
     static uint8_t language;
     static void set_language(const uint8_t lang);
@@ -292,9 +276,11 @@ public:
   #if HAS_WIRED_LCD
     static bool detected();
     static void init_lcd();
+    static void reinit_lcd() { TERN_(REINIT_NOISY_LCD, init_lcd()); }
   #else
     static inline bool detected() { return true; }
     static inline void init_lcd() {}
+    static void reinit_lcd() { TERN_(REINIT_NOISY_LCD, init_lcd()); }
   #endif
 
   #if HAS_PRINT_PROGRESS
@@ -366,6 +352,7 @@ public:
     static void reset_status(const bool no_welcome=false);
     static void set_status_P(PGM_P const message, const int8_t level=0);
     static void status_printf_P(const uint8_t level, PGM_P const fmt, ...);
+    static void status_printf(int8_t level, FSTR_P const fmt, ...);
     static void set_alert_status_P(PGM_P const message);
     static void set_alert_status(FSTR_P const fstr);
     static inline void reset_alert_level() { alert_level = 0; }
@@ -377,6 +364,7 @@ public:
     static inline void reset_status(const bool=false) {}
     static void set_status_P(PGM_P message, const int8_t=0);
     static void status_printf_P(const uint8_t, PGM_P message, ...);
+    static void status_printf(int8_t level, FSTR_P const fmt, ...);
     static inline void set_alert_status_P(PGM_P const) {}
     static void set_alert_status(FSTR_P const) {}
     static inline void reset_alert_level() {}
@@ -387,7 +375,7 @@ public:
 
   #if HAS_DISPLAY
 
-    static inline void init();
+    static void init();
     static void update();
     static bool get_blink();
     static void abort_print();

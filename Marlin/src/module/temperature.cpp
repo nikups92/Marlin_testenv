@@ -769,7 +769,8 @@ volatile bool Temperature::raw_temps_ready = false;
         #define MAX_CYCLE_TIME_PID_AUTOTUNE 20L
       #endif
       if ((ms - _MIN(t1, t2)) > (MAX_CYCLE_TIME_PID_AUTOTUNE * 60L * 1000L)) {
-        TERN_(DWIN_CREALITY_LCD, DWIN_Popup_Temperature(0));
+        // Commenting this. There is no Popup_Temperature defined..
+        //TERN_(DWIN_CREALITY_LCD, DWIN_Popup_Temperature(0));
         TERN_(DWIN_LCD_PROUI, DWIN_PidTuning(PID_TUNING_TIMEOUT));
         TERN_(EXTENSIBLE_UI, ExtUI::onPidTuning(ExtUI::result_t::PID_TUNING_TIMEOUT));
         TERN_(HOST_PROMPT_SUPPORT, hostui.notify(GET_TEXT_F(MSG_PID_TIMEOUT)));
@@ -837,7 +838,7 @@ volatile bool Temperature::raw_temps_ready = false;
       hal.idletask();
 
       // Run UI update
-      TERN(DWIN_CREALITY_LCD, DWIN_Update(), ui.update());
+      ui.update();
     }
     wait_for_heatup = false;
 
@@ -1233,7 +1234,7 @@ inline void loud_kill(FSTR_P const lcd_msg, const heater_id_t heater_id) {
       planner.synchronize();
     }
   #endif
-  kill(lcd_msg, HEATER_FSTR(heater_id));
+  kill(FTOP(lcd_msg), FTOP(HEATER_FSTR(heater_id)));
 }
 
 void Temperature::_temp_error(const heater_id_t heater_id, FSTR_P const serial_msg, FSTR_P const lcd_msg) {
@@ -1835,7 +1836,7 @@ void Temperature::task() {
   REMEMBER(mh, no_reentry, true);
 
   #if ENABLED(EMERGENCY_PARSER)
-    if (emergency_parser.killed_by_M112) kill(FPSTR(M112_KILL_STR), nullptr, true);
+    if (emergency_parser.killed_by_M112) kill(FTOP(FPSTR(M112_KILL_STR)), nullptr, true);
 
     if (emergency_parser.quickstop_by_M410) {
       emergency_parser.quickstop_by_M410 = false; // quickstop_stepper may call idle so clear this now!

@@ -48,6 +48,7 @@ MarlinUI ui;
 
 #if ENABLED(DWIN_CREALITY_LCD)
   #include "dwin/dwin.h"
+  #include "dwin/creality_dwin.h"
 #elif ENABLED(DWIN_LCD_PROUI)
   #include "e3v2/proui/dwin.h"
 #endif
@@ -112,7 +113,7 @@ constexpr uint8_t epps = ENCODER_PULSES_PER_STEP;
   void MarlinUI::set_brightness(const uint8_t value) {
     backlight = !!value;
     if (backlight) brightness = constrain(value, LCD_BRIGHTNESS_MIN, LCD_BRIGHTNESS_MAX);
-    _set_brightness();
+    set_brightness(brightness);
   }
 #endif
 
@@ -697,7 +698,7 @@ void MarlinUI::init() {
     draw_status_screen();
   }
 
-  void MarlinUI::kill_screen(PGM_P lcd_error, PGM_P lcd_component) {
+  void MarlinUI::kill_screen(FSTR_P lcd_error, FSTR_P lcd_component) {
     init();
    status_printf_P(1, PSTR(S_FMT ": " S_FMT), lcd_error, lcd_component);
     TERN_(HAS_LCD_MENU, return_to_status());
@@ -1466,7 +1467,7 @@ void MarlinUI::init() {
       else if (print_job_timer.needsService(3)) msg = service3;
     #endif
 
-    else if (!no_welcome) msg = GET_TEXT_F(WELCOME_MSG);
+    else if (!no_welcome) msg = GET_TEXT(WELCOME_MSG);
     else
       return;
 
@@ -1515,7 +1516,7 @@ void MarlinUI::init() {
 
   #include <stdarg.h>
 
-  void MarlinUI::status_printf_P(const uint8_t level, PGM_P const fmt, ...) {
+  void MarlinUI::status_printf_P(uint8_t level, PGM_P const fmt, ...) {
     // Alerts block lower priority messages
     if (level < 0) level = alert_level = 0;
     if (level < alert_level) return;
@@ -1628,7 +1629,7 @@ void MarlinUI::init() {
   #endif
 
   void MarlinUI::flow_fault() {
-    LCD_ALERTMESSAGEPGM(MSG_FLOWMETER_FAULT);
+    LCD_ALERTMESSAGE(MSG_FLOWMETER_FAULT);
     BUZZ(1000, 440);
     TERN_(HAS_MARLINUI_MENU, return_to_status());
   }

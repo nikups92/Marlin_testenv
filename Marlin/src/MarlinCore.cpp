@@ -915,16 +915,16 @@ void idle(bool no_stepper_sleep/*=false*/) {
  * Kill all activity and lock the machine.
  * After this the machine will need to be reset.
  */
-void kill(PGM_P const lcd_error/*=nullptr*/, PGM_P const lcd_component/*=nullptr*/, const bool steppers_off/*=false*/) {
+void kill(FSTR_P const lcd_error/*=nullptr*/, FSTR_P const lcd_component/*=nullptr*/, const bool steppers_off/*=false*/) {
   thermalManager.disable_all_heaters();
 
   TERN_(HAS_CUTTER, cutter.kill()); // Full cutter shutdown including ISR control
 
   // Echo the LCD message to serial for extra context
-  if (lcd_error) { SERIAL_ECHO_START(); SERIAL_ECHOLNPGM_P(lcd_error); }
+  if (lcd_error) { SERIAL_ECHO_START(); SERIAL_ECHOLNF(lcd_error); }
 
   #if HAS_DISPLAY
-    ui.kill_screen(lcd_error ?: GET_TEXT(MSG_KILLED), lcd_component ?: NUL_STR);
+    ui.kill_screen(FTOP(lcd_error ?: GET_TEXT_F(MSG_KILLED)), FTOP(lcd_component ?: FPSTR(NUL_STR)));
   #else
     UNUSED(lcd_error); UNUSED(lcd_component);
   #endif
@@ -935,7 +935,7 @@ void kill(PGM_P const lcd_error/*=nullptr*/, PGM_P const lcd_component/*=nullptr
   SERIAL_ERROR_MSG(STR_ERR_KILLED);
 
   #ifdef ACTION_ON_KILL
-    host_action_kill();
+    hostui.kill();
   #endif
 
   minkill(steppers_off);

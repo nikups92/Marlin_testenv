@@ -424,7 +424,7 @@ public:
     #endif
 
     static bool get_blink();
-    static void kill_screen(PGM_P const lcd_error, PGM_P const lcd_component);
+    static void kill_screen(FSTR_P const lcd_error, FSTR_P const lcd_component);
     static void draw_kill_screen();
 
   #else // No LCD
