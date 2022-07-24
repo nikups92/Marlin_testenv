@@ -38,6 +38,8 @@
 #include "../../MarlinCore.h"
 #include "../marlinui.h"
 #include "../../HAL/shared/Delay.h"
+#include "dwin.h"
+#include "creality_dwin.h"
 
 #if HAS_BUZZER
   #include "../../libs/buzzer.h"

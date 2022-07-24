@@ -36,7 +36,7 @@
 #include "creality_dwin.h"
 #include "../marlinui.h"
 
-uint8_t MarlinUI::brightness = DEFAULT_LCD_BRIGHTNESS;
+uint8_t MarlinUI::brightness = LCD_BRIGHTNESS_DEFAULT;
 bool MarlinUI::backlight = true;
 
 void MarlinUI::set_brightness(const uint8_t value) {
@@ -46,7 +46,7 @@ void MarlinUI::set_brightness(const uint8_t value) {
   }
   else {
     backlight = true;
-    brightness = constrain(value, MIN_LCD_BRIGHTNESS, MAX_LCD_BRIGHTNESS);
+    brightness = constrain(value, LCD_BRIGHTNESS_MIN, LCD_BRIGHTNESS_MAX);
     DWIN_Backlight_SetLuminance(brightness);
   }
 }

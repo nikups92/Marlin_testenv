@@ -170,6 +170,20 @@ constexpr uint8_t epps = ENCODER_PULSES_PER_STEP;
     #include "../feature/power.h"
   #endif
 
+  #if EITHER(HAS_WIRED_LCD, DWIN_CREALITY_LCD_JYERSUI)
+
+   bool MarlinUI::get_blink() {
+    static uint8_t blink = 0;
+    static millis_t next_blink_ms = 0;
+    millis_t ms = millis();
+    if (ELAPSED(ms, next_blink_ms)) {
+      blink ^= 0xFF;
+      next_blink_ms = ms + 1000 - (LCD_UPDATE_INTERVAL) / 2;
+    }
+    return blink != 0;
+  }
+  #endif
+
   #if HAS_ENCODER_ACTION
     volatile uint8_t MarlinUI::buttons;
     #if HAS_SLOW_BUTTONS
@@ -783,7 +797,7 @@ constexpr uint8_t epps = ENCODER_PULSES_PER_STEP;
 
       void MarlinUI::external_encoder() {
         if (external_control && encoderDiff) {
-          ubl.encoder_diff += encoderDiff;  // Encoder for UBL G29 mesh editing
+          bedlevel.encoder_diff += encoderDiff;  // Encoder for UBL G29 mesh editing
           encoderDiff = 0;                  // Hide encoder events from the screen handler
           refresh(LCDVIEW_REDRAW_NOW);      // ...but keep the refresh.
         }

@@ -185,9 +185,6 @@ typedef bool (*statusResetFunc_t)();
 //////////// MarlinUI Singleton ////////////
 ////////////////////////////////////////////
 
-class MarlinUI;
-extern MarlinUI ui;
-
 class MarlinUI {
 public:
 
@@ -317,7 +314,7 @@ public:
       static void progress_reset() { if (progress_override & (PROGRESS_MASK + 1U)) set_progress(0); }
     #endif
     #if ENABLED(SHOW_REMAINING_TIME)
-      static uint32_t _calculated_remaining_time() {
+      static inline uint32_t _calculated_remaining_time() {
         const duration_t elapsed = print_job_timer.duration();
         const progress_t progress = _get_progress();
         return progress ? elapsed.value * (100 * (PROGRESS_SCALE) - progress) / progress : 0;
@@ -390,9 +387,9 @@ public:
 
   #if HAS_DISPLAY
 
-    static void init();
+    static inline void init();
     static void update();
-    
+    static bool get_blink();
     static void abort_print();
     static void pause_print();
     static void resume_print();
@@ -400,6 +397,10 @@ public:
 
     #if BOTH(HAS_MARLINUI_MENU, PSU_CONTROL)
       static void poweroff();
+    #endif
+
+    #if EITHER(HAS_WIRED_LCD, DWIN_CREALITY_LCD_JYERSUI)
+      static bool get_blink();
     #endif
 
     #if HAS_WIRED_LCD
@@ -488,8 +489,6 @@ public:
       static constexpr bool drawing_screen = false, first_page = true;
     #endif
 
-    static bool get_blink();
-
     #if IS_DWIN_MARLINUI
       static bool did_first_redraw;
       static bool old_is_printing;
@@ -505,6 +504,10 @@ public:
     #if DISABLED(LIGHTWEIGHT_UI)
       static void draw_status_message(const bool blink);
     #endif
+
+    static bool get_blink();
+    static void kill_screen(PGM_P const lcd_error, PGM_P const lcd_component);
+    static void draw_kill_screen();
 
   #else // No LCD
     static inline void init() {}
