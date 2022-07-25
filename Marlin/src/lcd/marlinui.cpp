@@ -67,16 +67,18 @@ MarlinUI ui;
 constexpr uint8_t epps = ENCODER_PULSES_PER_STEP;
 
 #if HAS_STATUS_MESSAGE
-  #if ENABLED(STATUS_MESSAGE_SCROLLING) && EITHER(HAS_WIRED_LCD, DWIN_LCD_PROUI)
-    uint8_t MarlinUI::status_scroll_offset; // = 0
+    #if ENABLED(STATUS_MESSAGE_SCROLLING) && EITHER(HAS_WIRED_LCD, DWIN_LCD_PROUI)
+      uint8_t MarlinUI::status_scroll_offset; // = 0
+
   #endif
   char MarlinUI::status_message[MAX_MESSAGE_LENGTH + 1];
   uint8_t MarlinUI::alert_level; // = 0
+#endif
+
   #if HAS_STATUS_MESSAGE_TIMEOUT
     millis_t MarlinUI::status_message_expire_ms; // = 0
   #endif
   statusResetFunc_t MarlinUI::status_reset_callback; // = nullptr
-#endif
 
 #if ENABLED(LCD_SET_PROGRESS_MANUALLY)
   MarlinUI::progress_t MarlinUI::progress_override; // = 0
@@ -97,6 +99,7 @@ constexpr uint8_t epps = ENCODER_PULSES_PER_STEP;
   }
 #endif
 
+/*
 #if HAS_LCD_CONTRAST
   uint8_t MarlinUI::contrast = LCD_CONTRAST_DEFAULT; // Initialized by settings.load()
   void MarlinUI::set_contrast(const uint8_t value) {
@@ -104,6 +107,7 @@ constexpr uint8_t epps = ENCODER_PULSES_PER_STEP;
     _set_contrast();
   }
 #endif
+
 
 #if HAS_LCD_BRIGHTNESS
   uint8_t MarlinUI::brightness = LCD_BRIGHTNESS_DEFAULT;
@@ -115,14 +119,23 @@ constexpr uint8_t epps = ENCODER_PULSES_PER_STEP;
     set_brightness(brightness);
   }
 #endif
-
+*/
 #if ENABLED(SOUND_MENU_ITEM)
   bool MarlinUI::sound_on = ENABLED(SOUND_ON_DEFAULT);
 #endif
 
-#if ENABLED(PCA9632_BUZZER)
+#if EITHER(PCA9632_BUZZER, USE_BEEPER)
+  #include "../libs/buzzer.h" // for BUZZ() macro
+  #if ENABLED(PCA9632_BUZZER)
+    #include "../feature/leds/pca9632.h"
+  #endif
   void MarlinUI::buzz(const long duration, const uint16_t freq) {
-    if (sound_on) PCA9632_buzz(duration, freq);
+    if (!buzzer_enabled) return;
+    #if ENABLED(PCA9632_BUZZER)
+      PCA9632_buzz(duration, freq);
+    #elif USE_BEEPER
+      buzzer.tone(duration, freq);
+    #endif
   }
 #endif
 
@@ -193,71 +206,6 @@ constexpr uint8_t epps = ENCODER_PULSES_PER_STEP;
 
 #endif
 
-void MarlinUI::init() {
-
-  init_lcd();
-
-  #if HAS_DIGITAL_BUTTONS
-    #if BUTTON_EXISTS(EN1)
-      SET_INPUT_PULLUP(BTN_EN1);
-    #endif
-    #if BUTTON_EXISTS(EN2)
-      SET_INPUT_PULLUP(BTN_EN2);
-    #endif
-    #if BUTTON_EXISTS(ENC)
-      SET_INPUT_PULLUP(BTN_ENC);
-    #endif
-    #if BUTTON_EXISTS(ENC_EN)
-      SET_INPUT_PULLUP(BTN_ENC_EN);
-    #endif
-    #if BUTTON_EXISTS(BACK)
-      SET_INPUT_PULLUP(BTN_BACK);
-    #endif
-    #if BUTTON_EXISTS(UP)
-      SET_INPUT(BTN_UP);
-    #endif
-    #if BUTTON_EXISTS(DWN)
-      SET_INPUT(BTN_DWN);
-    #endif
-    #if BUTTON_EXISTS(LFT)
-      SET_INPUT(BTN_LFT);
-    #endif
-    #if BUTTON_EXISTS(RT)
-      SET_INPUT(BTN_RT);
-    #endif
-  #endif
-
-  #if HAS_SHIFT_ENCODER
-
-    #if ENABLED(SR_LCD_2W_NL) // Non latching 2 wire shift register
-
-      SET_OUTPUT(SR_DATA_PIN);
-      SET_OUTPUT(SR_CLK_PIN);
-
-    #elif PIN_EXISTS(SHIFT_CLK)
-
-      SET_OUTPUT(SHIFT_CLK_PIN);
-      OUT_WRITE(SHIFT_LD_PIN, HIGH);
-      #if PIN_EXISTS(SHIFT_EN)
-        OUT_WRITE(SHIFT_EN_PIN, LOW);
-      #endif
-      SET_INPUT_PULLUP(SHIFT_OUT_PIN);
-
-    #endif
-
-  #endif // HAS_SHIFT_ENCODER
-
-  #if BOTH(HAS_ENCODER_ACTION, HAS_SLOW_BUTTONS)
-    slow_buttons = 0;
-  #endif
-
-  update_buttons();
-
-  TERN_(HAS_ENCODER_ACTION, encoderDiff = 0);
-
-  reset_status(); // Set welcome message
-}
-
 #if HAS_WIRED_LCD
 
   #if HAS_MARLINUI_U8GLIB
@@ -290,7 +238,7 @@ void MarlinUI::init() {
     #include "../feature/power_monitor.h"
   #endif
 
-  #if LED_POWEROFF_TIMEOUT > 0
+  #if ENABLED(PSU_CONTROL) && (LED_POWEROFF_TIMEOUT > 0)
     #include "../feature/power.h"
   #endif
 
@@ -320,6 +268,12 @@ void MarlinUI::init() {
 
   #if HAS_MARLINUI_U8GLIB
     bool MarlinUI::drawing_screen, MarlinUI::first_page; // = false
+  #endif
+
+  // Encoder Handling
+  #if HAS_ENCODER_ACTION
+    uint32_t MarlinUI::encoderPosition;
+    volatile int8_t encoderDiff; // Updated in update_buttons, added to encoderPosition every LCD update
   #endif
 
   #if IS_DWIN_MARLINUI
@@ -466,6 +420,79 @@ void MarlinUI::init() {
 
   #endif // HAS_MARLINUI_MENU
 
+  void MarlinUI::init() {
+
+  init_lcd();
+
+  #if HAS_DIGITAL_BUTTONS
+    #if BUTTON_EXISTS(EN1)
+      SET_INPUT_PULLUP(BTN_EN1);
+    #endif
+    #if BUTTON_EXISTS(EN2)
+      SET_INPUT_PULLUP(BTN_EN2);
+    #endif
+    #if BUTTON_EXISTS(ENC)
+      SET_INPUT_PULLUP(BTN_ENC);
+    #endif
+    #if BUTTON_EXISTS(ENC_EN)
+      SET_INPUT_PULLUP(BTN_ENC_EN);
+    #endif
+    #if BUTTON_EXISTS(BACK)
+      SET_INPUT_PULLUP(BTN_BACK);
+    #endif
+    #if BUTTON_EXISTS(UP)
+      SET_INPUT(BTN_UP);
+    #endif
+    #if BUTTON_EXISTS(DWN)
+      SET_INPUT(BTN_DWN);
+    #endif
+    #if BUTTON_EXISTS(LFT)
+      SET_INPUT(BTN_LFT);
+    #endif
+    #if BUTTON_EXISTS(RT)
+      SET_INPUT(BTN_RT);
+    #endif
+  #endif
+
+  #if HAS_SHIFT_ENCODER
+
+    #if ENABLED(SR_LCD_2W_NL) // Non latching 2 wire shift register
+
+      SET_OUTPUT(SR_DATA_PIN);
+      SET_OUTPUT(SR_CLK_PIN);
+
+    #elif PIN_EXISTS(SHIFT_CLK)
+
+      SET_OUTPUT(SHIFT_CLK_PIN);
+      OUT_WRITE(SHIFT_LD_PIN, HIGH);
+      #if PIN_EXISTS(SHIFT_EN)
+        OUT_WRITE(SHIFT_EN_PIN, LOW);
+      #endif
+      SET_INPUT_PULLUP(SHIFT_OUT_PIN);
+
+    #endif
+
+  #endif // HAS_SHIFT_ENCODER
+
+  #if BOTH(HAS_ENCODER_ACTION, HAS_SLOW_BUTTONS)
+    slow_buttons = 0;
+  #endif
+
+  update_buttons();
+
+  TERN_(HAS_ENCODER_ACTION, encoderDiff = 0);
+
+ bool MarlinUI::get_blink() {
+    static uint8_t blink = 0;
+    static millis_t next_blink_ms = 0;
+    millis_t ms = millis();
+    if (ELAPSED(ms, next_blink_ms)) {
+      blink ^= 0xFF;
+      next_blink_ms = ms + 1000 - (LCD_UPDATE_INTERVAL) / 2;
+    }
+    return blink != 0;
+  }
+
   ////////////////////////////////////////////
   ///////////// Keypad Handling //////////////
   ////////////////////////////////////////////
@@ -475,17 +502,18 @@ void MarlinUI::init() {
     volatile uint8_t MarlinUI::keypad_buttons;
 
     #if HAS_MARLINUI_MENU && !HAS_ADC_BUTTONS
+      void lcd_move_x();
+      void lcd_move_y();
+      void lcd_move_z();
 
       void _reprapworld_keypad_move(const AxisEnum axis, const int16_t dir) {
         ui.manual_move.menu_scale = REPRAPWORLD_KEYPAD_MOVE_STEP;
         ui.encoderPosition = dir;
         switch (axis) {
-          case X_AXIS:
-          TERN_(HAS_Y_AXIS, case Y_AXIS:)
-          TERN_(HAS_Z_AXIS, case Z_AXIS:)
-            lcd_move_axis(axis);
+          case X_AXIS: lcd_move_x(); break;
+          case Y_AXIS: lcd_move_y(); break;
+          case Z_AXIS: lcd_move_z();
           default: break;
-        }
       }
 
     #endif
