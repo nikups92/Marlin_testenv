@@ -356,7 +356,6 @@ public:
     static void set_alert_status_P(PGM_P const message);
     static void set_alert_status(FSTR_P const fstr);
     static inline void reset_alert_level() { alert_level = 0; }
-
     static statusResetFunc_t status_reset_callback;
     static void set_status_reset_fn(const statusResetFunc_t fn=nullptr) { status_reset_callback = fn; }
   #else
@@ -511,7 +510,7 @@ public:
   #if HAS_PREHEAT
     enum PreheatTarget : uint8_t { PT_HOTEND, PT_BED, PT_FAN, PT_CHAMBER, PT_ALL = 0xFF };
     static preheat_t material_preset[PREHEAT_COUNT];
-    static PGM_P get_preheat_label(const uint8_t m);
+    static FSTR_P get_preheat_label(const uint8_t m);
     static void apply_preheat(const uint8_t m, const uint8_t pmask, const uint8_t e=active_extruder);
     static void preheat_set_fan(const uint8_t m) { TERN_(HAS_FAN, apply_preheat(m, _BV(PT_FAN))); }
     static void preheat_hotend(const uint8_t m, const uint8_t e=active_extruder) { TERN_(HAS_HOTEND, apply_preheat(m, _BV(PT_HOTEND))); }
